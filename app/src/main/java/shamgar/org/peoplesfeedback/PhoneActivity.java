@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -29,7 +30,9 @@ public class PhoneActivity extends AppCompatActivity implements View.OnClickList
     private EditText phoneNo;
     private EditText code;
 
-    private Button sendVerifyPhoneNo;
+    private RelativeLayout rlgender,rllocation,rlphone;
+
+    private Button sendVerifyPhoneNo,btnnext,btncontinue;
     private Button verifyCode;
     private Button reSend;
 
@@ -61,20 +64,28 @@ public class PhoneActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_phone);
+        setContentView(R.layout.signuplayout);
 
         mAuth = FirebaseAuth.getInstance();
-
+       // b_verify_phone_no
         phoneNo = findViewById(R.id.e_phone_no_verification);
-        code = findViewById(R.id.e_verify_code);
+       // code = findViewById(R.id.e_verify_code);
 
         sendVerifyPhoneNo = findViewById(R.id.b_verify_phone_no);
-        verifyCode = findViewById(R.id.b_verify_code);
-        reSend = findViewById(R.id.b_resend);
+        btncontinue = findViewById(R.id.btncontinue);
+        btnnext = findViewById(R.id.btnnext);
+
+        rlgender = findViewById(R.id.rlgender);
+        rllocation = findViewById(R.id.rllocation);
+        rlphone = findViewById(R.id.rlphone);
+        //verifyCode = findViewById(R.id.b_verify_code);
+       // reSend = findViewById(R.id.b_resend);
 
         sendVerifyPhoneNo.setOnClickListener(this);
-        verifyCode.setOnClickListener(this);
-        reSend.setOnClickListener(this);
+        btncontinue.setOnClickListener(this);
+        btnnext.setOnClickListener(this);
+      //  verifyCode.setOnClickListener(this);
+     //   reSend.setOnClickListener(this);
 
 
 
@@ -88,7 +99,7 @@ public class PhoneActivity extends AppCompatActivity implements View.OnClickList
                 //     detect the incoming verification SMS and perform verification without
                 //     user action.
                 Log.d(TAG, "onVerificationCompleted:" + credential);
-//
+
                 signInWithPhoneAuthCredential(credential);
             }
 
@@ -166,16 +177,25 @@ public class PhoneActivity extends AppCompatActivity implements View.OnClickList
         switch (view.getId()){
 
             case R.id.b_verify_phone_no:
-
                 sendVerificationCode(phoneNo.getText().toString());
                 break;
-            case R.id.b_verify_code:
-                verifySentCode(code.getText().toString());
+
+            case R.id.btnnext:
+                rlgender.setVisibility(View.GONE);
+                rllocation.setVisibility(View.VISIBLE);
+                btnnext.setVisibility(View.GONE);
+                btncontinue.setVisibility(View.VISIBLE);
+
                 break;
 
-            case R.id.b_resend:
-                resendVerificationCode(phoneNo.getText().toString(), mResendToken);
+            case R.id.btncontinue:
+
+                rllocation.setVisibility(View.GONE);
+                btncontinue.setVisibility(View.GONE);
+                rlphone.setVisibility(View.VISIBLE);
+                sendVerifyPhoneNo.setVisibility(View.VISIBLE);
                 break;
+
         }
 
     }
