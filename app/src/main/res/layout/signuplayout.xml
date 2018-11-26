@@ -41,7 +41,8 @@
         android:layout_height="match_parent"
         android:background="@color/white"
         android:orientation="vertical"
-        android:layout_below="@id/llpic">
+        android:layout_below="@id/llpic"
+        android:paddingTop="40dp">
 
         <RelativeLayout
             android:id="@+id/rlgender"
@@ -67,21 +68,32 @@
                 android:layout_toRightOf="@+id/imgmale"
                 android:layout_marginLeft="25dp" />
 
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/imgmale"
+                android:orientation="horizontal"
+                android:checkedButton="1">
+
             <CheckBox
                 android:id="@+id/checkmale"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:buttonTint="@color/colorPrimaryDark"
                 android:layout_below="@id/imgmale"
-                android:layout_marginLeft="10dp"/>
+                android:layout_marginLeft="10dp"
+                android:onClick="checkedButton"/>
             <CheckBox
                 android:id="@+id/checkfemale"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:buttonTint="@color/colorPrimaryDark"
-               android:layout_toRightOf="@id/imgmale"
+                android:layout_toRightOf="@id/imgmale"
                 android:layout_below="@id/imgfemale"
-             android:layout_marginLeft="35dp"/>
+                android:layout_marginLeft="70dp"
+                android:onClick="checkedButton"/>
+
+            </RadioGroup>
 
 
         </RelativeLayout>
@@ -101,23 +113,34 @@
                 android:id="@+id/spinnerstate"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:src="@drawable/man"
                 android:layout_marginRight="80dp"
                 android:layout_marginLeft="80dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
+                android:paddingLeft="5dp"
                 android:foreground="@drawable/stroke_background" />
 
             <Spinner
                 android:id="@+id/spinnerdistrict"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:src="@drawable/man"
                 android:layout_marginRight="80dp"
                 android:layout_marginLeft="80dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
+                android:paddingLeft="5dp"
                 android:layout_below="@id/spinnerstate"
+                android:foreground="@drawable/stroke_background"/>
+            <Spinner
+                android:id="@+id/spinnerConstituency"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginRight="80dp"
+                android:layout_marginLeft="80dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:paddingLeft="5dp"
+                android:layout_below="@id/spinnerdistrict"
                 android:foreground="@drawable/stroke_background"/>
 
 
@@ -138,9 +161,9 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:gravity="center"
                 android:layout_marginBottom="5dp"
-                android:hint="enter phone number"
+                android:hint="ex: +919100055566"
+                android:paddingLeft="5dp"
                 android:ems="10"
                 android:inputType="phone"
                 android:background="@drawable/stroke_background"/>

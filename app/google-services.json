@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "550756400743-m2fnpcjlnf535mqltb8q89b9ek9r1r5e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "shamgar.org.peoplesfeedback",
+            "certificate_hash": "43c773f1e19ef4bc8a602d075ada659dc37f7232"
+          }
+        },
+        {
           "client_id": "550756400743-f50td86b4sm89nkqn4pno2g7pldl2i8g.apps.googleusercontent.com",
           "client_type": 3
         }
