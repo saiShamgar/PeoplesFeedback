@@ -1,17 +1,28 @@
 package shamgar.org.peoplesfeedback;
 
 import android.content.SharedPreferences;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
 
-public class HomeScreenActivity extends AppCompatActivity {
+import shamgar.org.peoplesfeedback.Adapters.TabsAccessorAdaptor;
+
+public class HomeScreenActivity extends AppCompatActivity
+{
+
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
+    private TabsAccessorAdaptor tabsAccessorAdaptor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
+
+
 
         SharedPreferences pref = getApplicationContext().getSharedPreferences("signUp", MODE_PRIVATE);
 
@@ -22,5 +33,18 @@ public class HomeScreenActivity extends AppCompatActivity {
         String constit=pref.getString("constit",null);
 
         Toast.makeText(getApplicationContext(),"Gender="+gender+"\n"+"state="+state+"\n"+"district="+district+"\n"+"number="+phone+"\n"+"constituency="+constit,Toast.LENGTH_LONG).show();
+
+        viewPager=(ViewPager)findViewById(R.id.mainviewpager);
+        tabsAccessorAdaptor=new TabsAccessorAdaptor(getSupportFragmentManager());
+
+
+
+
+        viewPager.setAdapter(tabsAccessorAdaptor);
+
+        //
+
+        tabLayout=(TabLayout)findViewById(R.id.maintabs);
+        tabLayout.setupWithViewPager(viewPager);
     }
 }
